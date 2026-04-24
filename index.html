@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Moinudheen K P </title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root { --gold: #b38e44; --teal: #1a7b8a; --bg: #fffdf5; --black: #000000; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        
+        body { 
+            background-color: var(--bg);
+            background-image: radial-gradient(#f0e9d2 2px, transparent 2px);
+            background-size: 55px 55px;
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--teal); 
+            text-align: center; 
+        }
+
+        /* Floral Corner Designs */
+        .floral-corner { position: fixed; width: 120px; height: 120px; z-index: 10; opacity: 0.4; pointer-events: none; border: 2px solid var(--gold); }
+        .top-left { top: 10px; left: 10px; border-bottom: none; border-right: none; border-radius: 50px 0 0 0; }
+        .top-right { top: 10px; right: 10px; border-bottom: none; border-left: none; border-radius: 0 50px 0 0; }
+
+        #overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); z-index: 9999; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .open-btn {
+            margin-top: 20px; padding: 14px 40px; border: 1.5px solid var(--gold); 
+            background: white; color: var(--gold); font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem; cursor: pointer; letter-spacing: 2px; transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .open-btn:hover { background: var(--gold); color: white; }
+
+        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 40px 20px; }
+        
+        .bismillah { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; font-family: serif; }
+
+        .intro-text { color: var(--gold); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; line-height: 2; font-weight: 400; }
+
+        .ceremony-title { 
+            margin: 20px 0; font-weight: 400; font-size: 1.4rem; 
+            color: var(--gold); letter-spacing: 4px; text-transform: uppercase;
+            font-family: 'Cormorant Garamond', serif;
+            border-bottom: 1px solid rgba(179, 142, 68, 0.4);
+            padding-bottom: 10px;
+        }
+
+        .name-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 12vw, 4.5rem); color: var(--teal); font-weight: 400; }
+        .parent-line { color: var(--gold); font-size: 0.75rem; font-style: italic; margin-top: 5px; }
+        .with-text { font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--gold); margin: 8px 0; }
+        .main-date { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.8rem; letter-spacing: 3px; margin-top: 25px; }
+
+        .blink-arrow { margin-top: 40px; font-size: 1.8rem; color: var(--gold); animation: blinker 2s linear infinite; text-decoration: none; cursor: pointer; }
+        @keyframes blinker { 0%, 100% { opacity: 1; transform: translateY(0); } 50% { opacity: 0.3; transform: translateY(5px); } }
+
+        .details-section { padding: 80px 20px; }
+        .details-grid { display: flex; flex-direction: column; gap: 25px; max-width: 1000px; margin: 0 auto; }
+        @media (min-width: 768px) { .details-grid { flex-direction: row; } }
+        
+        .box { background: rgba(255, 255, 255, 0.98); padding: 40px 20px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.06); flex: 1; border: 1px solid rgba(179,142,68,0.1); transition: 0.3s; }
+        .box h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.1rem; color: #222; margin-bottom: 8px; }
+        
+        .map-link { 
+            display: inline-block; margin-top: 20px; color: var(--teal); 
+            font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--teal);
+            font-size: 0.8rem; padding-bottom: 3px;
+        }
+
+        /* Countdown Timer Styling */
+        .countdown-wrap { display: flex; justify-content: center; gap: 10px; margin: 50px 0; }
+        .cd-item { background: white; width: 75px; padding: 15px 0; border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 1px solid rgba(179,142,68,0.2); }
+        .cd-num { display: block; font-size: 1.8rem; color: var(--teal); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+        .cd-label { font-size: 0.6rem; text-transform: uppercase; color: var(--gold); letter-spacing: 1px; }
+
+        .music-toggle { position: fixed; bottom: 25px; right: 25px; background: white; border: 1px solid var(--gold); border-radius: 50%; width: 50px; height: 50px; cursor: pointer; z-index: 100; font-size: 1.2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .rotating { animation: rot 5s linear infinite; }
+        @keyframes rot { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
+    </style>
+</head>
+<body>
+
+    <div class="floral-corner top-left"></div>
+    <div class="floral-corner top-right"></div>
+
+    <div id="overlay">
+        <h2 style="font-family: 'Great Vibes'; font-size: 3.5rem; color: var(--gold);">The Wedding</h2>
+        <button class="open-btn" onclick="startApp()">OPEN INVITATION</button>
+    </div>
+
+    <section class="hero">
+        <div class="bismillah" data-aos="fade-down">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+        <div class="intro-text" data-aos="fade-up" data-aos-delay="200">
+            WITH THE BLESSINGS OF ALLAH,<br>
+            We invite you to share in our joy and request<br>your presence at the
+        </div>
+        
+        <div class="ceremony-title" data-aos="fade-up" data-aos-delay="400">Wedding Ceremony of</div>
+        
+        <div style="margin-top:15px;">
+            <div data-aos="fade-right" data-aos-duration="1500">
+                <h1 class="name-title">Moinudheen K P </h1>
+                <div class="parent-line">(S/O Late Abdul Razak K P & Mariyambi K)</div>
+            </div>
+            
+            <div class="with-text" data-aos="zoom-in" data-aos-delay="600">with</div>
+            
+            <div data-aos="fade-left" data-aos-duration="1500">
+                <h1 class="name-title">Fathimathul Safiya Rizvi</h1>
+                <div class="parent-line">(D/O Sajin P P & Ruksana K)</div>
+            </div>
+        </div>
+
+        <div class="main-date" data-aos="fade-up" data-aos-delay="800">June 27 & 28, 2026</div>
+        <div style="margin-top:10px; color:#888; font-size:0.85rem; letter-spacing:1px;" data-aos="fade-up" data-aos-delay="1000">BAITHUL ROWLA, KANNUR</div>
+        <a href="#details" class="blink-arrow">︾</a>
+    </section>
+
+    <section id="details" class="details-section">
+        <h2 style="font-family: 'Great Vibes'; font-size: 3.8rem; color: var(--gold); margin-bottom: 10px;" data-aos="fade-up">Celebration Details</h2>
+        <p style="color: var(--black); font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 40px;" data-aos="fade-up">Join us as we start our new journey</p>
+
+        <div class="details-grid">
+            <div class="box" data-aos="fade-right">
+                <p style="color:var(--gold); font-size:0.75rem; letter-spacing:2px; margin-bottom:10px;">THE NIKAH</p>
+                <h3>Rahmaniya Juma Masjid</h3>
+                <p style="color: #666; font-size: 0.9rem;">Saturday, June 27 | After Asr</p>
+                <p style="color: #888; font-size: 0.8rem; margin-top: 15px; font-style: italic;">Thannada, Mepoyil, Kannur</p>
+                <a href="http://maps.google.com/?q=Rahmaniya+Juma+Masjid+Thannada" target="_blank" class="map-link">VIEW ON MAP</a>
+            </div>
+            <div class="box" data-aos="fade-left">
+                <p style="color:var(--gold); font-size:0.75rem; letter-spacing:2px; margin-bottom:10px;">THE RECEPTION</p>
+                <h3>Baithul Rowla</h3>
+                <p style="color: #666; font-size: 0.85rem;">Sat: After Nikah | Sun: From 12 PM</p>
+                <p style="color: #888; font-size: 0.8rem; margin-top: 15px; font-style: italic;">Near Kuruva Vayanashala, Kadalayi Road, Kannur</p>
+                <a href="http://maps.google.com/?q=Kuruva+Vayanashala+Kannur" target="_blank" class="map-link">VIEW ON MAP</a>
+            </div>
+        </div>
+
+        <div class="countdown-wrap" data-aos="zoom-in">
+            <div class="cd-item"><span class="cd-num" id="days">00</span><span class="cd-label">Days</span></div>
+            <div class="cd-item"><span class="cd-num" id="hours">00</span><span class="cd-label">Hrs</span></div>
+            <div class="cd-item"><span class="cd-num" id="mins">00</span><span class="cd-label">Mins</span></div>
+            <div class="cd-item"><span class="cd-num" id="secs">00</span><span class="cd-label">Secs</span></div>
+        </div>
+
+        <div style="font-family: 'Great Vibes'; font-size: 3rem; color: var(--gold); margin-top: 40px; padding: 20px;" data-aos="fade-up">We request the honor of your presence</div>
+    </section>
+
+    <button class="music-toggle" id="mBtn" onclick="tM()">🎵</button>
+    <audio id="sng" loop preload="auto">
+        <source src="https://www.islamcan.com/audio/nasheeds/instrumentals/arabic-beat.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: true });
+        
+        function startApp() {
+            document.getElementById('overlay').style.display = 'none';
+            tM();
+        }
+
+        function tM() {
+            const s = document.getElementById("sng"), b = document.getElementById("mBtn");
+            if(s.paused) { 
+                s.play(); 
+                b.classList.add('rotating'); 
+                b.innerText="💿"; 
+            } else { 
+                s.pause(); 
+                b.classList.remove('rotating'); 
+                b.innerText="🎵"; 
+            }
+        }
+
+        // --- COUNTDOWN LOGIC ---
+        const targetDate = new Date("June 27, 2026 16:30:00").getTime();
+        setInterval(() => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if(diff > 0) {
+                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('mins').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('secs').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
